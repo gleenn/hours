@@ -8,4 +8,9 @@
      [:div {:class "jumbotron"}
       [:h1 "Hours"]
       [:p
-       [:a {:href "/hours/create?_method=POST", :class "btn btn-primary btn-lg", :role "button"} "Create Timesheet"]]]]))
+       [:form {:action "/hours" :method "POST"}
+        (v/af-token)
+        [:input {:value "Create Timesheet"
+                 :type "submit"
+                 :class "btn btn-primary btn-lg"
+                 :role "button"}]]]]]))
