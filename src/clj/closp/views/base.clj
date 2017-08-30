@@ -84,7 +84,8 @@
           (include-css "/css/bootstrap.min.css")
           (include-css "/css/bootstrap-theme.min.css")
           (include-css "/css/screen.css")
-          (when css (include-css css))]
+          (when css (include-css css))
+          [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]]
 
          [:body
 
