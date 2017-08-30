@@ -88,7 +88,6 @@
           [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]]
 
          [:body
-
           [:div#header.navbar.navbar-inverse.navbar-fixed-top {:role "navigation"}
            [:div.container-fluid
             [:div.navbar-header
