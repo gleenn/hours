@@ -8,8 +8,9 @@
      [:div {:class "jumbotron"}
       [:h1 "Foo!"]
       [:p "Bar"]
-      [:p
-       [:a {:href "/user/signup", :class "btn btn-primary btn-lg", :role "button"} "Sign up »"]]]]))
+      (if (:registration-allowed? req)
+        [:p
+         [:a {:href "/user/signup", :class "btn btn-primary btn-lg", :role "button"} "Sign up »"]])]]))
 
 (defn contact-page [{:keys [localize] :as req}]
   (v/render
