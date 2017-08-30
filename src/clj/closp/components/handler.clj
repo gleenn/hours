@@ -10,7 +10,8 @@
             [closp.routes.home :refer [home-routes]]
             [closp.routes.crud :refer [crud-routes]]
             [closp.routes.user :refer [user-routes registration-routes]]
-            [closp.middleware :refer [load-middleware]]))
+            [closp.middleware :refer [load-middleware]]
+            [hours.routes.hours :refer [hours-routes]]))
 
 (defroutes base-routes
   (route/resources "/")
@@ -32,6 +33,7 @@
   (-> (app-handler
         (into [] (concat (when (:registration-allowed? config) [(registration-routes config db)])
                          ;; add your application routes here
+                         [hours-routes]
                          [(crud-routes config) home-routes (user-routes config db) base-routes]))
         ;; add custom middleware here
         :middleware (load-middleware config)
