@@ -3,7 +3,8 @@
             [hiccup.page :refer [html5 include-css include-js]]
             [noir.session :as sess]))
 
-
+(defn format-time [time]
+  (clj-time.format/unparse (:year-month-day clj-time.format/formatters) time))
 
 (defn merge-flash-messages
   "Expects a map containing keys and a values which will be put into the sessions flash"

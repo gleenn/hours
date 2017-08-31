@@ -24,11 +24,14 @@
            timesheets (timesheet/all db user-id)]
        (vh/index-page req timesheets))))
 
-(defn show [{:keys [id] :as req} db]
+(defn show [{:keys [route-params] :as req} db]
+  (log/info req)
   (redirect-unless-logged-in
     req
     #(let [user-id (session/get :user-id)
-           timesheet (timesheet/find-by-user-id-and-id db user-id id)]
+           timesheet-id (Integer/parseInt (:id route-params))
+           timesheet (timesheet/find-by-user-id-and-id db user-id timesheet-id)]
+       (log/info timesheet)
        (vh/show-page req timesheet))))
 
 (defn create [req db]

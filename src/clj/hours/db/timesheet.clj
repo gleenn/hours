@@ -9,6 +9,7 @@
   (j/query db ["select * from timesheets where user_id = ? limit 1" user-id]))
 
 (defn find-by-user-id-and-id [db user-id id]
+  (log/info "searching for timesheet with user-id" user-id "and id" id)
   (first (j/query db ["select * from timesheets where user_id = ? and id = ? limit 1" user-id id])))
 
 (defn- get-timesheet-by-id [db id]
