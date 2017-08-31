@@ -4,7 +4,7 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :source-paths ["src/clj" "src/cljs" "src/cljc"]
+  :source-paths ["src/clj" "src/cljs" "src/cljc" "src/migrations"]
 
   :dependencies [[org.clojure/clojure "1.9.0-alpha16"]
                  [org.clojure/clojurescript "1.9.293"]
@@ -52,9 +52,15 @@
 
                  [org.clojure/tools.logging "0.3.1"]
                  [org.postgresql/postgresql "9.4.1212"]
-                 [org.clojure/java.jdbc "0.6.2-alpha3"]]
+                 #_[org.clojure/java.jdbc "0.6.2-alpha3"]
+                 #_[org.postgresql/postgresql "9.4-1206-jdbc42"]
+                 [org.clojure/java.jdbc "0.6.2-alpha3"]
+                 #_[joplin.jdbc "0.3.10"]
+                 [ragtime "0.7.1"]
+                 ]
 
-  :plugins [[lein-cljsbuild "1.1.1"]]
+  :plugins [[lein-cljsbuild "1.1.1"]
+            [lein-exec "0.3.6"]]
 
   :min-lein-version "2.5.0"
 
@@ -117,8 +123,9 @@
   :uberjar-name "hours.jar"
 
   :aliases {"rel-jar" ["do" "clean," "cljsbuild" "once" "adv," "uberjar"]
-            "unit" ["do" "test" ":unit"]
-            "integ" ["do" "test" ":integration"]}
+            "unit"    ["do" "test" ":unit"]
+            "integ"   ["do" "test" ":integration"]
+            "migrate" ["exec" "-ep" "(require '[ragtime.repl :as r]) (require '[user]) (r/migrate user/config)"]}
 
 
   :test-refresh {:quiet true

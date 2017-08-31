@@ -1,0 +1,26 @@
+
+; U N U S E D ! ! !
+
+
+
+
+{
+ :migrators    {:sql-mig "migrations"}          ;; A path for a folder with migration files
+
+ :seeds        {:sql-seed "hours.db.seeds/run"                   ;; A clojure var (function) that applies the seed
+                ;:es-seed  "seeds.es/run"
+                }
+
+ :databases    {
+                ;:es-dev   {:type :es, :host "es-prod.local", :port "9300", :cluster "dev"}
+                ;:es-prod  {:type :es, :host "es-prod.local", :port "9300", :cluster "prod"}
+                ;:dev  {:type :jdbc, :url "jdbc:postgresql://localhost:5432/hours?user=glenn"}
+                :dev  {:type :jdbc, :url "jdbc:postgresql://localhost:5432/hours?user=glenn"}
+                ;:prod {:type :jdbc, :url "jdbc:h2:file:prod"}
+                }
+
+ ;; We combine the definitions above into different environments
+ :environments {:dev  [{:db :dev, :migrator :sql-mig, :seed :sql-seed}]
+                :prod [{:db :prod, :migrator :sql-mig}
+                       {:db :es-prod}, :seed :es-seed]}
+ }
