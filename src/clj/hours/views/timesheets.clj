@@ -33,7 +33,8 @@
              [:form {:action (str "/timesheets/" id "/entry") :method "POST"}
               (v/af-token)
               [:input {:name "description"
-                       :type "text"}]
+                       :type "text"
+                       :placeholder "Description"}]
               [:input {:value "Create Entry"
                        :type  "submit"
                        :class "btn btn-primary btn-lg"
