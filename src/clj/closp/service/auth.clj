@@ -24,3 +24,5 @@
 
 (def auth-backend
   (session-backend {:unauthorized-handler unauthorized-handler}))
+
+(defn logged-in? [req] (some? (-> req :session :noir :identity)))

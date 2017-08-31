@@ -26,6 +26,7 @@
        (catch Exception _ {:email "" :role ""})))
 
 (s/fdef get-logged-in-username :ret string?)
+
 (defn get-logged-in-username [] (:email (get-logged-in-user)))
 
 (defn get-logged-in-user-id [db]

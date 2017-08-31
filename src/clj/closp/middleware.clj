@@ -29,7 +29,7 @@
   (fn [req] (handler (assoc req :config config))))
 
 (def development-middleware
-  [#(prone/wrap-exceptions % {:app-namespaces ['closp]})
+  [#_#(prone/wrap-exceptions % {:app-namespaces ['closp]})
    wrap-reload])
 
 (defn production-middleware [config]

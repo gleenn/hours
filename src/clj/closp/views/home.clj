@@ -5,12 +5,12 @@
   (v/render
     "" (merge req {:css "/css/home.css"})
     [:div
-     [:div {:class "jumbotron"}
-      [:h1 "Foo!"]
-      [:p "Bar"]
-      (if (:registration-allowed? req)
-        [:p
-         [:a {:href "/user/signup", :class "btn btn-primary btn-lg", :role "button"} "Sign up »"]])]]))
+     [:div {:class "jumbotron"} [:h1 "Foo!"]]
+     [:a {:href "/timesheets"} "Timesheets"]
+
+     (if (:registration-allowed? req)
+       [:p
+        [:a {:href "/user/signup", :class "btn btn-primary btn-lg", :role "button"} "Sign up »"]])]))
 
 (defn contact-page [{:keys [localize] :as req}]
   (v/render
