@@ -9,6 +9,9 @@
             [de.sveri.clojure.commons.middleware.util :refer [wrap-trimmings]]
             [ring.middleware.transit :refer [wrap-transit-response]]
             [ring.middleware.reload :refer [wrap-reload]]
+            [ring.middleware.json :refer [wrap-json-body wrap-json-params]]
+            [ring.middleware.keyword-params :refer [wrap-keyword-params]]
+            [ring.middleware.json-response :refer [wrap-json-response]]
             [closp.locale :as loc]
             [closp.service.auth :refer [auth-backend]]
             [closp.service.auth :as auth]))
@@ -32,9 +35,14 @@
 (defn production-middleware [config]
   [#(add-req-properties % config)
    add-locale
+   ;wrap-json-response
+   ;#_wrap-json-body
+   ;wrap-keyword-params
+   ;wrap-json-params
    #(wrap-access-rules % {:rules auth/rules})
    #(wrap-authorization % auth/auth-backend)
    #(wrap-transit-response % {:encoding :json :opts {}})
+   #_wrap-json-response
    wrap-anti-forgery
    wrap-trimmings])
 

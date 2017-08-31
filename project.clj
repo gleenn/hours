@@ -17,6 +17,8 @@
                  [ring "1.5.1"]
                  [lib-noir "0.9.9"]
                  [ring/ring-anti-forgery "1.0.1"]
+                 [ring/ring-json "0.4.0"]
+                 [ring-json-response "0.2.0"]
                  [compojure "1.5.2"]
                  [reagent "0.6.0"]
                  [org.immutant/web "2.1.6"]
@@ -57,6 +59,7 @@
                  [org.clojure/java.jdbc "0.6.2-alpha3"]
                  #_[joplin.jdbc "0.3.10"]
                  [ragtime "0.7.1"]
+                 [clj-time "0.14.0"]
                  ]
 
   :plugins [[lein-cljsbuild "1.1.1"]

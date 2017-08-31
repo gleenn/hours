@@ -1,19 +1,24 @@
 (ns hours.routes.hours
   (:require [compojure.core :refer [routes GET POST]]
             [hours.views.hours :as vh]
-            [ring.util.response :refer [response]]
+            [clojure.java.jdbc :as j]
+            [clojure.walk :refer [keywordize-keys]]
+            [noir.session :as session]
+            [ring.util.json-response :refer [json-response]]
             [ring.util.response :as response]
-            [clojure.java.jdbc :as j]))
-
+            [clj-time.core :as time]
+            [clj-time.coerce :as tc]
+            [closp.views.base :as v]))
 
 (defn index-page [req db]
   (vh/index-page req))
 
 (defn create-timesheet-page [req db]
-  #_(closp.db.user/get-user-by-id db (-> req :params))
-  #_(j/insert! db "timesheets" {})
-  #_(response/r (str req))
-  (response/redirect "/hours"))
+  (if-let [user-id (session/get :user-id)]
+    #_(closp.db.user/get-user-by-id db (-> req :params))
+    (response/response (j/insert! db "timesheets" {:user_id user-id :start_date (tc/to-sql-time (time/now))}))
+    (do (session/flash-put! :flash "can't do that hal, gotta be logged in")
+        (response/redirect "/hours"))))
 
 (defn hours-routes [db]
   (routes
