@@ -1,8 +1,8 @@
 CREATE TABLE timesheets (
 id bigserial NOT NULL PRIMARY KEY,
 user_id bigint NOT NULL,
-start_date time,
-end_date time
+start_date date,
+end_date date
 --first_name character varying(30),
 --last_name character varying(30),
 --role character varying(30),

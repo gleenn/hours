@@ -1,12 +1,14 @@
 (ns closp.views.home
-  (:require [closp.views.base :as v]))
+  (:require [closp.views.base :as v]
+            [closp.service.auth :as auth]))
 
 (defn home-page [{:keys [localize] :as req}]
   (v/render
-    "" (merge req {:css "/css/home.css"})
+    "Hours Home" (merge req {:css "/css/home.css"})
     [:div
      [:div {:class "jumbotron"} [:h1 "Foo!"]]
-     [:a {:href "/timesheets"} "Timesheets"]
+     (when (auth/logged-in? req)
+       [:a {:href "/timesheets"} "Timesheets"])
 
      (if (:registration-allowed? req)
        [:p

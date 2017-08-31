@@ -1,6 +1,6 @@
 (ns hours.routes.timesheets
   (:require [compojure.core :refer [routes GET POST]]
-            [hours.views.hours :as vh]
+            [hours.views.timesheets :as vh]
             [clojure.java.jdbc :as j]
             [clojure.walk :refer [keywordize-keys]]
             [noir.session :as session]
@@ -10,10 +10,11 @@
             [clj-time.coerce :as tc]
             [closp.views.base :as v]
             [hours.db.timesheet :as timesheet]
-            [clojure.tools.logging :as log]))
+            [clojure.tools.logging :as log]
+            [closp.service.auth :as auth]))
 
 (defn redirect-unless-logged-in [req fn]
-  (if (not (closp.service.auth/logged-in? req))
+  (if (not (auth/logged-in? req))
     (response/redirect "/")
     (fn)))
 
