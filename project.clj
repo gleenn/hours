@@ -125,7 +125,8 @@
   :aliases {"rel-jar" ["do" "clean," "cljsbuild" "once" "adv," "uberjar"]
             "unit"    ["do" "test" ":unit"]
             "integ"   ["do" "test" ":integration"]
-            "migrate" ["exec" "-ep" "(require '[ragtime.repl :as r]) (require '[user]) (r/migrate user/config)"]}
+            "migrate" ["exec" "-ep" "(require '[ragtime.repl :as r]) (require '[user]) (r/migrate user/config)"]
+            "rollback" ["exec" "-ep" "(require '[ragtime.repl :as r]) (require '[user]) (r/rollback user/config)"]}
 
 
   :test-refresh {:quiet true
